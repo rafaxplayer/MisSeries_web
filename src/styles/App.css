@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.list{
+  padding: 10px;
+  overflow: hidden;
+}
+.item{
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: #474747;
+  border-radius:5px;
+  font-style: italic;
+  color:#c9c9c9;
+  
+}
+.item i{
+  transition: all .4s;
+}
+.item i:hover{
+    color:#007165;
+}
+.item h4{
+  margin:12px;
+  display: inline-block;
+}
+.modal-header{
+  background: #008080;
+  color:white;
+  position:relative;
+  overflow: hidden;
+}
+.close-button{
+    float: right;
+    padding: 10px;
+    cursor: pointer;
+}
+.modal-header h3{
+  margin: 25px 15px;
+}
+
+.modal-list>li{
+  padding: 10px 18px;
+  background: #c0c0c0;
+  cursor: pointer;
+  font-style: italic;
+  font-weight: 600;
+}
+.modal-list>li:hover{
+  background: #e8e8e8
+}
+.card{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+  border-radius: 5px; /* 5px rounded corners */
+}
+.card figure{
+  width: 350px;
+}
+.card figure img{
+  width: 100%;
+  border-radius: 5px;
+}
+.card .info > *{
+  margin:0 0 5px 0;
+ }
+.card .info{
+  padding: 10px;
+}
+.empty{
+  display: block;
+  margin: 0 auto;
+}
+.hidde{
+  display:none;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

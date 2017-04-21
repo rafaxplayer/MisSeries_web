@@ -1,0 +1,17 @@
+.item-episode{
+    padding: 10px;
+}
+.item-episode>*{
+    display: inline-block
+}
+
+.switch,.item-episode i{
+    vertical-align: middle;
+    float: right;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.item-episode i{
+    margin: 10px;
+}

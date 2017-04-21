@@ -1,0 +1,84 @@
+header{
+    width: 100%;
+    min-width: 450px;
+    height: 80px;
+    background: #009688;
+    color:white;
+    border-bottom: 2px solid #007165;
+    padding: 10px;
+    overflow: hidden;
+}
+
+header > *{
+    display: inline-block !important;
+    position:relative;
+}
+
+header .logo{
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top:10px;
+    left: 5px;
+    cursor: pointer;
+
+}
+
+header .title{
+    font-style: italic;
+    position: relative;
+    top: -10px;
+    margin: 0 .5em;
+    text-shadow: 0px 3px 8px #2a2a2a;
+}
+header figure .badge{
+    position: absolute;
+    left: 75%;
+    margin-right: 10px;
+    z-index: 9999;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    background: rgb(51, 148, 109);
+    padding: 5px 8px;
+    font-size: .7em;
+    cursor:pointer;
+}
+
+.shadowed {
+    -webkit-filter: drop-shadow(0px 3px 8px #2a2a2a);
+     filter: drop-shadow(0px 3px 8px #2a2a2a); 
+}
+.profile{
+    float: right;
+    margin-right: 30px;
+}
+.profile ul{
+    list-style: none;
+    margin: 0;
+}
+.profile ul>li{
+    text-align: center;
+}
+.profile ul li:nth-child(2){
+    font-size: .8em;
+    margin: 2px 0;
+}
+.profile figure{
+    margin: 0 auto;
+    max-width: 40px;
+    max-height: 40px;
+    position:relative;
+}
+.avatar{
+    width:100%;
+    border-radius: 50%;
+}
+.profile button{
+    background: #0ca2a2;
+    padding: 6px;
+    border: none;
+    color: #ffffff;
+    font-size: .8em;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}

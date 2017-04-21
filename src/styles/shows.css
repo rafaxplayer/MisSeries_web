@@ -1,0 +1,34 @@
+.item-show{
+    padding: 10px;
+}
+.item-show .info, .item-show figure{
+    display: inline-block;
+}
+
+.item-show .info{
+    margin-left: 10px;
+    vertical-align: top;
+    
+}
+.item-show .info h2,.item-show .info p{
+    margin:0 0 5px 0;
+ 
+}
+.item-show .info p{
+   font-size: .8em;
+ 
+}
+.item-show figure{
+    width: 80px;
+    height: 80px;
+}
+.item-show figure>img{
+    width: 100%;
+    height: 100%;
+}
+.item-show i{
+    float: right;
+    padding: 4px;
+    margin: 20px 10px;
+    cursor: pointer;
+}
