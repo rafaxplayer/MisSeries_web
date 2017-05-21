@@ -10,7 +10,7 @@ import ModalDetails from 'react-modal';
 import { MODAL_OPTIONS_ISOPEN,MODAL_DETAILS_ISOPEN } from './consTypes'
 import { push } from 'react-router-redux'
 import { getEpisodes, deleteShow } from './actions'
-
+import { notificationShow } from './helpers'
 const customStyles = {
   overlay :{
     backgroundColor : 'rgba(45, 43, 43, 0.74902)'
@@ -55,11 +55,19 @@ class App extends React.Component {
   }
   
   deleteShow(id){
+    const self = this;
     this.props.deleteShow(id)
+      .then(function() {
+          notificationShow("Ok serie eliminada con exito!")
+          self.closeModal(MODAL_OPTIONS_ISOPEN)   
+      })
+      .catch(function(error) {
+          notificationShow(`Remove failed: ${error.message}`)
+      });
   }
  
   render() {
-    const { showformodal, openModalOptions, openModalDetails} = this.props
+    const { showformodal, openModalOptions, openModalDetails, children} = this.props
     return (
           <div>
             <ModalShows
@@ -94,9 +102,9 @@ class App extends React.Component {
                   <p>Code : {showformodal ?showformodal.code:''}</p>
                 </div>
               </div>
-              
             </ModalDetails>
             <Header/>
+            {children}
           </div>
         );
     }

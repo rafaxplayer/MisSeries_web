@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 import * as cns from '../consTypes'
-import siiimpleToast from 'siiimple-toast'
-
+import { notificationShow } from '../helpers'
 var config = {
     apiKey: "AIzaSyDVIg4mbMcDPV5hyDgBB2hr73C_nI-9_d0",
     authDomain: "mis-series-9f0e3.firebaseapp.com",
@@ -49,19 +48,12 @@ export function login(){
 export function logout(){
     return function(dispatch){
         let user = firebase.auth().currentUser
-    firebase.auth().signOut()
+        firebase.auth().signOut()
             .then(function(result){
-            console.log('Se eliminado '+ user.email)
-        })
-        .catch(error => console.log(`Error ${error.code}: ${error.message}`))
-    }
-}
-function notificationShow(msg){
-    const Notification = new siiimpleToast({
-        vertical: 'bottom',
-        horizontal: 'right'
-    });
-    Notification.message(msg);
+                console.log('Se eliminado '+ user.email)
+            })
+            .catch(error => console.log(`Error ${error.code}: ${error.message}`))
+        }
 }
 
 
@@ -106,8 +98,52 @@ export function getEpisodes(showcode){
 export function deleteShow(id){
     return function(dispatch,getState){
         if(confirm(`Seguro quieres eliminal la serie con codigo :${id}`)){
-            showsRef.child(id).remove();
+            return showsRef.child(id).remove()
+                
         }
+    }
+}
+
+export function newShow(code){
+    return function(dispatch,getState){
+        
+        fetch(cns.BASE_URL_SERIE+code)
+        .then((res)=>{
+            return res.text();
+        }).then((html)=> {
+            
+            let title = html.match(cns.REGEX_TITLE);
+            if(title != null){
+                console.log("Title : ",title[1])
+            }else{
+                notificationShow("Error : La serie no existe o no se encontraron datos : Title")
+                return;
+            }
+            let img = html.match(cns.REGEX_POSTER);
+            if(img != null){
+                console.log("Poster : ",img[1])
+            }else{
+                notificationShow("Error : La serie no existe o no se encontraron datos : Poster")
+                return;
+            }
+            const match = new RegExp(cns.REGEX_BASE_CAPS, "gim");
+            let temps = 1;
+            let myArray = []
+            do {
+                temps = myArray[3];
+            }while ((myArray = match.exec(html)) !== null);
+
+            let serie = {
+                code:code,
+                name:title[1],
+                poster:img[1],
+                temps:temps
+            }
+
+            showsRef.child(code).set(serie)
+            notificationShow(`Serie añadida con exito! ${serie.title}`)
+        });
+      
     }
 }
 
