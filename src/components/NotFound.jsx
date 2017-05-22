@@ -4,7 +4,7 @@ class NotFound extends Component {
     state = {  }
     render() {
         return (
-            <img src={not_found}/>
+            <img src={not_found} alt="404"/>
         );
     }
 }

@@ -1,29 +1,29 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter} from 'react-router-redux'
-import { Route, Redirect,Switch } from 'react-router-dom'
+import { ConnectedRouter as Router} from 'react-router-redux'
+import { Route, Redirect } from 'react-router-dom'
 import { store, history } from './store'
 import App from './App'
 import ListTvShows from './components/ListTvShows'
 import ListEpisodes from './components/ListEpisodes'
 import ListNotSeen from './components/ListNotSeen'
 import NotFound from './components/NotFound'
+
+
 render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <Router history={history}>
       <div>
-       <Redirect from="/" to="/home"/>
+        <Redirect from="/" to="/home"/>
+        <Route path="/" component={App}/>
+        <Route path="/home"  component={ListTvShows}/>
+        <Route path="/show" component={ListEpisodes} />
+        <Route path="/notseen" component={ListNotSeen} />
+        {/*<Route component={NotFound} />*/}
         
-        <Route exact path="/" component={App}/>
-        
-        <Route exact path="/home" component={ListTvShows}/>
-        <Route exact path="/show" component={ListEpisodes} />
-        <Route exact path="/notseen" component={ListNotSeen} />
-        <Route component={NotFound} />
-        
-     </div>
-    </ConnectedRouter>
+      </div>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

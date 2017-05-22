@@ -6,12 +6,12 @@ import EmptyList from './EmptyList';
 class ListNotSeen extends Component {
    
     render() {
-        const self = this;
+       
         return (
                <section className="list">
                 {
-                     Object.keys(this.props.notseen).length > 0 ? (Object.keys(this.props.notseen).map(function(key,i){
-                        const episode = self.props.notseen[key]
+                     Object.keys(this.props.notseen).length > 0 ? (Object.keys(this.props.notseen).map((key,i)=>{
+                        const episode = this.props.notseen[key]
                         return(<ItemEpisode key={i} episode={ episode }/>)
                         })):(<EmptyList/>)
                 }

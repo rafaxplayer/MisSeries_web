@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import * as cns from '../consTypes'
 import { notificationShow } from '../helpers'
+
 var config = {
     apiKey: "AIzaSyDVIg4mbMcDPV5hyDgBB2hr73C_nI-9_d0",
     authDomain: "mis-series-9f0e3.firebaseapp.com",

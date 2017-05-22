@@ -27,7 +27,7 @@ class ListTvShows extends Component {
     newSerie(){
         let num = prompt("Codigo de la serie:","code");
         console.log(num)
-        if(num.length > 0){
+        if(num && num.length > 0){
             if(!isNumeric(num)){
                 notificationShow(`${num} Código invalido , debe ser un número`,2);
                 return;
@@ -38,9 +38,8 @@ class ListTvShows extends Component {
     }
     notSeenCount(code){
         let count =0;
-        const self = this;
-        Object.keys(this.props.notseen).forEach(function(key,i,array){
-            let episode = self.props.notseen[key]
+        Object.keys(this.props.notseen).forEach((key,i,array)=>{
+            let episode = this.props.notseen[key]
             if(episode.seriecode === code){
                 count++;
             }
@@ -50,13 +49,13 @@ class ListTvShows extends Component {
     }
 
     render(){
-            const self = this;
-            return (
+            
+        return (
             <section className="list">
             {
                 Object.keys(this.props.shows).length > 0 ? ( Object.keys(this.props.shows).map((key, i)=>{
-                        let show = self.props.shows[key];
-                        return(<ItemShow key={i} show={show} notseen={self.notSeenCount(show.code)}/>)
+                        let show = this.props.shows[key];
+                        return(<ItemShow key={i} show={show} notseen={this.notSeenCount(show.code)}/>)
                     })):(<EmptyList/>)
                     
             }

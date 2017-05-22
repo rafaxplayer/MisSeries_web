@@ -10,12 +10,11 @@ import { connect } from 'react-redux';
 
 class Header extends Component {
     
-    navigateHome(){
-        store.dispatch(push('/home'))
+    navigateTo(location){
+        store.dispatch(push(location))
     }
-    navigateNotSeen(){
-        store.dispatch(push('/notseen'))
-    }
+
+
     componentWillMount(){
         
         this.props.getNotSeen();
@@ -33,8 +32,8 @@ class Header extends Component {
         return (
             <header>
                 <figure>
-                    <p className={`badge ${isHide}`} onClick={ this.navigateNotSeen }>{ notseen.length }</p>
-                    <img src={logo} className="logo shadowed" alt="" onClick={ this.navigateHome }/>
+                    <p className={`badge ${isHide}`} onClick={ this.navigateTo.bind(this,'/notseen')}>{ notseen.length }</p>
+                    <img src={logo} className="logo shadowed" alt="" onClick={ this.navigateTo.bind(this,'/home') }/>
                 </figure>
                 
                 <h1 className="title">Mis Series</h1>
@@ -43,5 +42,5 @@ class Header extends Component {
         )
     }
 }
-function mapStateToProps(state){return{notseen:state.episodes.notseen}};
-export default connect(mapStateToProps,{ getNotSeen })(Header);
+const mapStateToProps = (state) => ({notseen:state.episodes.notseen})
+export default connect(mapStateToProps,{getNotSeen})(Header);

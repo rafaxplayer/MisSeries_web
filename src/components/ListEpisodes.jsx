@@ -22,7 +22,7 @@ class ListEpisodes extends Component {
 
    checkIfNotSeenExists(episodes){
       let chck = true;
-       Object.keys(episodes).forEach(function(key,i){
+       Object.keys(episodes).forEach((key,i)=>{
             const episode = episodes[key]
             if(!episode.visto ){
                                 
@@ -42,7 +42,7 @@ class ListEpisodes extends Component {
     }
 
     render(){
-        const self=this;
+        
         return (
             <section className="list">
                 <div className="item">
@@ -53,8 +53,8 @@ class ListEpisodes extends Component {
                     </label>
                 </div>
                 {
-                     Object.keys(this.props.episodes).length > 0 ? (Object.keys(this.props.episodes).map((key,i)=>{
-                        const episode = self.props.episodes[key]
+                     Object.keys(this.props.episodes).length > 0 ? (Object.keys(this.props.episodes).map((key,i) => {
+                        const episode = this.props.episodes[key]
                         return(<ItemEpisode key={i} episode={episode}/>)})):(<EmptyList/>)
                 }
             </section>
