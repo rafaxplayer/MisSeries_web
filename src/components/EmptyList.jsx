@@ -5,7 +5,7 @@ class EmptyList extends Component {
     render() {
         return (
             <div>
-                <img src={Empty} className="empty" alt="empty list"/>
+                <img src={Empty} className="center" alt="empty list"/>
                 
             </div>
         );

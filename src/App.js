@@ -8,7 +8,7 @@ import { store } from './store'
 import ModalShows from 'react-modal';
 import ModalDetails from 'react-modal';
 import { MODAL_OPTIONS_ISOPEN,MODAL_DETAILS_ISOPEN } from './consTypes'
-import { push } from 'react-router-redux'
+import {withRouter} from 'react-router-dom'
 import { getEpisodes, deleteShow } from './actions'
 import { notificationShow } from './helpers'
 const customStyles = {
@@ -33,7 +33,7 @@ class App extends React.Component {
       
       this.props.getEpisodes(code)
       this.closeModal(MODAL_OPTIONS_ISOPEN)
-      store.dispatch(push('/show'))
+      this.props.history.push('/show')
   }
 
   openDetailsModal(){
@@ -116,4 +116,4 @@ function mapStateToProps(state){
           showformodal:state.modals.showformodal
         }
 }
-export default connect( mapStateToProps ,{getEpisodes, deleteShow })(App);
+export default withRouter(connect( mapStateToProps ,{getEpisodes, deleteShow })(App));

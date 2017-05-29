@@ -3,18 +3,14 @@ import '../styles/header.css';
 import logo from '../resources/logo.png';
 import AuthUser from './items/AuthUser';
 import { store } from '../store';
-import { push } from 'react-router-redux'
+import { Link } from 'react-router-dom'
 import { REF_CHAPTERS } from '../consTypes';
 import { getNotSeen } from '../actions';
 import { connect } from 'react-redux';
 
 class Header extends Component {
     
-    navigateTo(location){
-        store.dispatch(push(location))
-    }
-
-
+   
     componentWillMount(){
         
         this.props.getNotSeen();
@@ -32,8 +28,8 @@ class Header extends Component {
         return (
             <header>
                 <figure>
-                    <p className={`badge ${isHide}`} onClick={ this.navigateTo.bind(this,'/notseen')}>{ notseen.length }</p>
-                    <img src={logo} className="logo shadowed" alt="" onClick={ this.navigateTo.bind(this,'/home') }/>
+                    <Link to="/notseen"><p className={`badge ${isHide}`}>{ notseen.length }</p></Link>
+                    <Link to="/"><img src={logo} className="logo shadowed" alt="logo"/></Link>
                 </figure>
                 
                 <h1 className="title">Mis Series</h1>
@@ -43,4 +39,9 @@ class Header extends Component {
     }
 }
 const mapStateToProps = (state) => ({notseen:state.episodes.notseen})
-export default connect(mapStateToProps,{getNotSeen})(Header);
+const mapDispatchToProps = (dispatch) => (
+    {
+        getNotSeen:() => {dispatch(getNotSeen())},
+        navigateTo:(location) => {}
+    })
+export default connect(mapStateToProps, mapDispatchToProps )(Header);

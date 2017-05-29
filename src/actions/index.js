@@ -17,7 +17,7 @@ const episodesRef = firebase.database().ref('/Capitulos');
 
 export function getAuth(){
     return function (dispatch,getState){
-        firebase.auth().onAuthStateChanged(function(user){
+        firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 console.log(`Auth user: ${user.displayName}`)
                 dispatch({type:cns.LOGIN_USER, payload:user})
@@ -38,7 +38,7 @@ export function login(){
 
      return function(dispatch){
         firebase.auth().signInWithPopup(provider)
-        .then(function(result){
+        .then( result => {
             console.log(`lOGIN WITH: ${result.user.email}`)
         })
         .catch(error => console.log(`Error ${error.code}: ${error.message}`))
@@ -50,7 +50,7 @@ export function logout(){
     return function(dispatch){
         let user = firebase.auth().currentUser
         firebase.auth().signOut()
-            .then(function(result){
+            .then(result => {
                 console.log('Se eliminado '+ user.email)
             })
             .catch(error => console.log(`Error ${error.code}: ${error.message}`))
@@ -61,8 +61,9 @@ export function logout(){
 export function getNotSeen(){
     return function(dispatch,getState){
         episodesRef.orderByChild('visto').equalTo(false).on('value', function(snapshot){
+            
             if(snapshot.val() != null){
-                snapshot.forEach(function(snap){
+                snapshot.forEach(snap => {
                      if(!snap.val().notify){
                         notificationShow("Nuevo Capitulo :\r\n" + snap.val().name);
                     }
@@ -76,7 +77,7 @@ export function getNotSeen(){
 
 export function getTvShows(){
     return function(dispatch,getState){
-         showsRef.on('value', function(snapshot){
+         showsRef.on('value', snapshot => {
             if(snapshot.val() != null){
                 dispatch({type:cns.LIST_TVSHOWS, payload:snapshot.val()})
             }else{dispatch({type:cns.LIST_TVSHOWS, payload:[]})}
@@ -87,7 +88,7 @@ export function getTvShows(){
 export function getEpisodes(showcode){
       return function(dispatch,getState){
         let code = showcode;
-        episodesRef.orderByChild('seriecode').equalTo(code).on('value', function(snapshot){
+        episodesRef.orderByChild('seriecode').equalTo(code).on('value', snapshot => {
             if(snapshot.val() != null){
                 dispatch({type:cns.LIST_TVEPISODES, payload:snapshot.val()})
              }else{dispatch({type:cns.LIST_TVEPISODES, payload:[]})}
@@ -156,8 +157,8 @@ export function checkChapter(id,bool){
 
 export function checkAll(seriecode,bool){
     return function(dispatch,getState){
-        episodesRef.orderByChild('seriecode').equalTo(seriecode).once('value',function(snapshot){
-            snapshot.forEach(function(snap){
+        episodesRef.orderByChild('seriecode').equalTo(seriecode).once('value',snapshot => {
+            snapshot.forEach(snap =>{
                 snap.ref.update(
                     {visto: bool,
 				    notify: true}
