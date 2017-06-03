@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import * as cns from '../consTypes'
 import { notificationShow } from '../helpers'
+import cheerio from 'cheerio'
 
 var config = {
     apiKey: "AIzaSyDVIg4mbMcDPV5hyDgBB2hr73C_nI-9_d0",
@@ -108,42 +109,40 @@ export function deleteShow(id){
 
 export function newShow(code){
     return function(dispatch,getState){
-        
-        fetch(cns.BASE_URL_SERIE+code)
+        fetch(cns.BASE_URL_SERIE + code)
         .then((res)=>{
             return res.text();
         }).then((html)=> {
-            
-            let title = html.match(cns.REGEX_TITLE);
+
+            const $ = cheerio.load(html);
+           
+            const title = $('.post-title.entry-title').text().replace('Lista de capitulos de','')
             if(title != null){
-                console.log("Title : ",title[1])
+                console.log("Title : ",title)
             }else{
                 notificationShow("Error : La serie no existe o no se encontraron datos : Title")
                 return;
             }
-            let img = html.match(cns.REGEX_POSTER);
+            const img = $('img').filter('.ict').last().attr('src');
             if(img != null){
-                console.log("Poster : ",img[1])
+                console.log("Poster : ",img)
             }else{
                 notificationShow("Error : La serie no existe o no se encontraron datos : Poster")
                 return;
             }
-            const match = new RegExp(cns.REGEX_BASE_CAPS, "gim");
-            let temps = 1;
-            let myArray = []
-            do {
-                temps = myArray[3];
-            }while ((myArray = match.exec(html)) !== null);
-
+            
+            let temps = $('.post-body.entry-content').find("[id*='T']").length;
+                        
             let serie = {
                 code:code,
-                name:title[1],
-                poster:img[1],
+                name:title,
+                poster:img,
                 temps:temps
             }
 
             showsRef.child(code).set(serie)
             notificationShow(`Serie añadida con exito! ${serie.title}`)
+           
         });
       
     }

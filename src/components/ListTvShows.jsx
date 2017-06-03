@@ -6,7 +6,8 @@ import ItemShow from './items/ItemShow';
 import EmptyList from './EmptyList';
 import '../styles/shows.css';
 import { notificationShow , isNumeric} from '../helpers'
-
+import TransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import connectWithTransitionGroup from 'connect-with-transition-group';
 class ListTvShows extends Component {
 
     constructor(props){
@@ -52,13 +53,18 @@ class ListTvShows extends Component {
             
         return (
             <section className="list">
-            {
-                Object.keys(this.props.shows).length > 0 ? ( Object.keys(this.props.shows).map((key, i)=>{
-                        let show = this.props.shows[key];
-                        return(<ItemShow key={i} show={show} notseen={this.notSeenCount(show.code)}/>)
-                    })):(<EmptyList/>)
-                    
-            }
+                <TransitionGroup 
+                        transitionName='fade'
+                        transitionEnterTimeout={800}
+                        transitionLeaveTimeout={800}>
+                    {
+                        Object.keys(this.props.shows).length > 0 ? ( Object.keys(this.props.shows).map((key, i)=>{
+                                let show = this.props.shows[key];
+                                return(<ItemShow key={key} show={show} notseen={this.notSeenCount(show.code)}/>)
+                            })):(<EmptyList/>)
+                            
+                    }
+                </TransitionGroup>
             <a className="btn-floating" onClick={this.newSerie}>
                 <spam>+</spam>
             </a>
@@ -72,4 +78,4 @@ function mapStateToProps(state,ownProps){
         notseen:state.episodes.notseen
     };
 };
-export default connect(mapStateToProps,{ getTvShows, stopRef, newShow })(ListTvShows);
+export default connectWithTransitionGroup(connect(mapStateToProps,{ getTvShows, stopRef, newShow })(ListTvShows));

@@ -9,6 +9,7 @@ class Switch extends Component {
         checkChapter(episode.name, e.target.checked)
         this.setState({on:e.target.checked})
     }
+    
     render() {
         return (
             <label className="switch">

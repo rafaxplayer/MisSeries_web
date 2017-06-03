@@ -4,6 +4,8 @@ import { checkAll } from '../actions'
 import ItemEpisode from './items/ItemEpisode'
 import EmptyList from './EmptyList';
 import '../styles/episodes.css'
+import TransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import connectWithTransitionGroup from 'connect-with-transition-group';
 
 class ListEpisodes extends Component {
     constructor(props){
@@ -52,14 +54,19 @@ class ListEpisodes extends Component {
                         <div className="slider round"></div>
                     </label>
                 </div>
-                {
-                     Object.keys(this.props.episodes).length > 0 ? (Object.keys(this.props.episodes).map((key,i) => {
-                        const episode = this.props.episodes[key]
-                        return(<ItemEpisode key={i} episode={episode}/>)})):(<EmptyList/>)
-                }
+                <TransitionGroup 
+                        transitionName='fade'
+                        transitionEnterTimeout={800}
+                        transitionLeaveTimeout={800}>
+                        {
+                            Object.keys(this.props.episodes).length > 0 ? (Object.keys(this.props.episodes).map((key,i) => {
+                                const episode = this.props.episodes[key]
+                                return(<ItemEpisode key={key} episode={episode}/>)})):(<EmptyList/>)
+                        }
+                </TransitionGroup>
             </section>
         )
     }
 }
 function mapStateToProps(state){return{episodes:state.episodes.list}}
-export default connect(mapStateToProps,{ checkAll })(ListEpisodes);
+export default connectWithTransitionGroup(connect(mapStateToProps,{ checkAll })(ListEpisodes));

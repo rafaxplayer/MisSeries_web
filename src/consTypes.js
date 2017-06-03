@@ -9,7 +9,7 @@ export const MODAL_DETAILS_ISOPEN = 'is-details-open'
 export const MODAL_SHOW = 'login-user'
 export const BASE_URL = 'http://seriesdanko.to/'
 export const BASE_URL_SERIE = 'http://seriesdanko.to/serie.php?serie='
-export const REGEX_BASE_CAPS = "<a\\shref='(capitulo.*?serie=(\\d+)&temp=(\\d+)&.*?)'>(.*?)</a>.*?<br>";
+/*export const REGEX_BASE_CAPS = "<a\\shref='(capitulo.*?serie=(\\d+)&temp=(\\d+)&.*?)'>(.*?)</a>.*?<br>";
 export const REGEX_TITLE="<h3\\sclass='post-title entry-title'>Lista\\sde\\scapitulos\\sde\\s(.*?)</h3>"
-export const REGEX_POSTER="<img src='(.*?)'\\sclass='ict'";
+export const REGEX_POSTER="<img src='(.*?)'\\sclass='ict'";*/
  
