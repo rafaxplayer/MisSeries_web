@@ -14,15 +14,13 @@ class ListEpisodes extends Component {
         this.state = {
             checkall:true
         }
-        this.toggleNotseen=this.toggleNotseen.bind(this)
+        this.toggleNotseen = this.toggleNotseen.bind(this)
     }
 
-    componentWillReceiveProps(nextProps) {
-        
-        this.checkIfNotSeenExists(nextProps.episodes)
-    }
+    componentWillReceiveProps = nextProps => this.checkIfNotSeenExists(nextProps.episodes)
+    
 
-   checkIfNotSeenExists(episodes){
+   checkIfNotSeenExists = episodes =>{
       let chck = true;
        Object.keys(episodes).forEach((key,i)=>{
             const episode = episodes[key]
@@ -35,7 +33,7 @@ class ListEpisodes extends Component {
      
    }
 
-    toggleNotseen(e){
+    toggleNotseen = e =>{
         const { episodes } = this.props
         const code = episodes[Object.keys(episodes)[0]].seriecode;
         this.props.checkAll(code,e.target.checked)
@@ -68,5 +66,5 @@ class ListEpisodes extends Component {
         )
     }
 }
-function mapStateToProps(state){return{episodes:state.episodes.list}}
+const mapStateToProps=(state) =>({episodes:state.episodes.list})
 export default connectWithTransitionGroup(connect(mapStateToProps,{ checkAll })(ListEpisodes));

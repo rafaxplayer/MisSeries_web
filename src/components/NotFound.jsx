@@ -1,15 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import not_found from '../resources/404-notfound.png'
-
-class NotFound extends Component {
-    state = {  }
-    render() {
-        return (
-            <div>
-                <img src={not_found} className="center" alt="404"/>
-            </div>
-        );
-    }
-}
-
+const NotFound = ()=> (<div className="not-found"><h1>404</h1><spam>OOPS! Page Not Found</spam></div>);
 export default NotFound;

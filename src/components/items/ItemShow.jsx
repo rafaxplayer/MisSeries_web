@@ -25,18 +25,18 @@ class ItemShow extends Component {
 
         
     render() {
-        const { show,notseen } = this.props
+        const { show, notseen } = this.props
         return (
             <article className="item item-show">
                 <figure>
                     <img src={show.poster} alt=""/>
                 </figure>
                 <div className="info">
-                    <h2>{show.name}</h2>
+                    <h2>{ show.name }</h2>
                     <p>{`Temps : ${show.temps}`}</p>
                     <p>{`No vistos : ${notseen}`}</p>
                 </div>
-                <i className="fa fa-cog fa-2x" aria-hidden="true" onClick={this.openModal.bind(this,show)}></i>
+                <i className="fa fa-cog fa-2x" aria-hidden="true" onClick={ this.openModal.bind(this,show) }></i>
             </article>
         );
     }

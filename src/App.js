@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import { store } from './store'
 import ModalShows from 'react-modal';
 import ModalDetails from 'react-modal';
-import { MODAL_OPTIONS_ISOPEN,MODAL_DETAILS_ISOPEN } from './consTypes'
-import {withRouter} from 'react-router-dom'
+import { MODAL_OPTIONS_ISOPEN, MODAL_DETAILS_ISOPEN } from './consTypes'
+import { withRouter } from 'react-router-dom'
 import { getEpisodes, deleteShow } from './actions'
 import { notificationShow } from './helpers'
+
 const customStyles = {
   overlay :{
     backgroundColor : 'rgba(45, 43, 43, 0.74902)'
@@ -27,12 +28,14 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
+
 class App extends React.Component {
   
   onClickgetEpisodes(code){
       
       this.props.getEpisodes(code)
       this.closeModal(MODAL_OPTIONS_ISOPEN)
+      this.closeModal(MODAL_DETAILS_ISOPEN)
       this.props.history.push('/show')
   }
 
@@ -94,26 +97,26 @@ class App extends React.Component {
               contentLabel="Modal Details Show">
               <div className="card">
                 <figure>
-                  <img src={showformodal ? showformodal.poster:''} alt=""/>
+                  <img src={showformodal ? showformodal.poster:''} alt="serie poster"/>
                 </figure>
                 <div className="info">
                   <h4>{showformodal ?showformodal.name:''}</h4>
-                  <p>Temps : {showformodal ?showformodal.temps:''}</p>
-                  <p>Code : {showformodal ?showformodal.code:''}</p>
+                  <p><spam style={{fontWeight:'bold'}}>Temps : </spam>{showformodal ?showformodal.temps:''}</p>
+                  <p><spam style={{fontWeight:'bold'}}>Code : </spam>{showformodal ?showformodal.code:''}</p>
+                  <p style={{color:'#009688',cursor:'pointer',fontWeight:'bold'}} onClick={this.onClickgetEpisodes.bind(this, showformodal ? showformodal.code:'')}><i className="fa fa-film" aria-hidden="true"></i> Ver listado capitulos</p>
                 </div>
               </div>
             </ModalDetails>
             <Header/>
-            {children}
+            { children }
           </div>
         );
     }
 }
-function mapStateToProps(state){
-  return{
+const mapStateToProps=state=>({
           openModalOptions:state.modals.options,
           openModalDetails:state.modals.details,
           showformodal:state.modals.showformodal
         }
-}
-export default withRouter(connect( mapStateToProps ,{getEpisodes, deleteShow })(App));
+)
+export default withRouter(connect( mapStateToProps ,{ getEpisodes, deleteShow })(App));

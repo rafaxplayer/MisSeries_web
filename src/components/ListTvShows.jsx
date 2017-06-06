@@ -16,15 +16,13 @@ class ListTvShows extends Component {
         this.newSerie = this.newSerie.bind(this);
     }
 
-    componentWillMount(){
-        this.props.getTvShows();
+    componentWillMount = () =>this.props.getTvShows();
         
-    }
+    
    
-    componentWillUnMount(){
-        this.props.stopRef(REF_SHOWS)
+    componentWillUnMount = () => this.props.stopRef(REF_SHOWS)
         
-    }
+    
     newSerie(){
         let num = prompt("Codigo de la serie:","code");
         console.log(num)
@@ -37,6 +35,7 @@ class ListTvShows extends Component {
             this.props.newShow(num)
         }
     }
+
     notSeenCount(code){
         let count =0;
         Object.keys(this.props.notseen).forEach((key,i,array)=>{
@@ -50,7 +49,7 @@ class ListTvShows extends Component {
     }
 
     render(){
-            
+           
         return (
             <section className="list">
                 <TransitionGroup 
@@ -72,10 +71,5 @@ class ListTvShows extends Component {
     }
 }
 
-function mapStateToProps(state,ownProps){
-    return {
-        shows:state.shows.list, 
-        notseen:state.episodes.notseen
-    };
-};
+const mapStateToProps=(state,ownProps)=>({shows:state.shows.list, notseen:state.episodes.notseen})
 export default connectWithTransitionGroup(connect(mapStateToProps,{ getTvShows, stopRef, newShow })(ListTvShows));

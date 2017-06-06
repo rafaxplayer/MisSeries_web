@@ -2,6 +2,10 @@
   "name": "mis-series",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafaxplayer/MisSeries_web/"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.1",
     "connect-with-transition-group": "^0.2.0",

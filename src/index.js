@@ -1,16 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
 import { store } from './store'
 import App from './App'
 import ListTvShows from './components/ListTvShows'
 import ListEpisodes from './components/ListEpisodes'
 import ListNotSeen from './components/ListNotSeen'
 import NotFound from './components/NotFound'
-
 
 render(
   <Provider store={ store }>

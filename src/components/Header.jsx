@@ -9,19 +9,11 @@ import { getNotSeen } from '../actions';
 import { connect } from 'react-redux';
 
 class Header extends Component {
-    
-   
-    componentWillMount(){
+  
+    componentWillMount=() => this.props.getNotSeen();
         
-        this.props.getNotSeen();
-        
-    }
-
-    componentWillUnMount(){
-        this.props.stopRef(REF_CHAPTERS)
-        
-    }
-
+    componentWillUnMount=()=>this.props.stopRef(REF_CHAPTERS)
+       
     render() {
         const notseen = Object.keys(this.props.notseen);
         let isHide = notseen.length > 0 ?'':'hidde';

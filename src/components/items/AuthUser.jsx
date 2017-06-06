@@ -4,24 +4,15 @@ import { getAuth, login, logout} from  '../../actions'
 
 class AuthUser extends Component {
    
-    componentWillMount = () => {
-        this.props.getAuth();
-        
-    }
+    componentWillMount=() => this.props.getAuth();
+    
+	handleAuth=() => this.props.login()
 
-	handleAuth(){this.props.login()}
+    handleLogout=() => this.props.logout()
 
-    handleLogout(){this.props.logout()}
-
-    renderButton(){
-        return (
-            <div className="profile">
-                <ul >
-					<li><button onClick={this.handleAuth.bind(this)}>Login</button></li>
-				 </ul>
-            </div>)
-    }
-    render() {
+    renderButton=() => (<div className="profile"><ul ><li><button onClick={this.handleAuth.bind(this)}>Login</button></li></ul></div>)
+    
+    render=() =>{
         const { user } = this.props
         return (<div className="profile">
                 {user ? (
