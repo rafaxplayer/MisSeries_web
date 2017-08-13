@@ -45,9 +45,9 @@ class ListEpisodes extends Component {
         
         return (
             <section className="list">
-                <div className="item">
+                <div className="item item-episode">
                     <h4>Episodio visto :</h4>
-                     <label className="switch">
+                     <label className="switch" style={{marginLeft:'auto'}}>
                         <input type="checkbox" checked={ this.state.checkall } onChange={ this.toggleNotseen }/>
                         <div className="slider round"></div>
                     </label>
@@ -66,5 +66,5 @@ class ListEpisodes extends Component {
         )
     }
 }
-const mapStateToProps=(state) =>({episodes:state.episodes.list})
+const mapStateToProps = (state) => ({episodes:state.episodes.list})
 export default connectWithTransitionGroup(connect(mapStateToProps,{ checkAll })(ListEpisodes));

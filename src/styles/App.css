@@ -81,7 +81,12 @@ ul{
 .card .info{
   padding: 10px;
 }
-
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .hidde{
   display:none;
 }
@@ -122,31 +127,23 @@ ul{
   
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 /*Animation*/
 .fade-enter {
   opacity: 0.01;
-  right: -100%;
-}
+ }
 
 .fade-enter.fade-enter-active {
   opacity: 1;
-  right: 0;
   transition: all 800ms ease-in;
 }
 
 .fade-leave {
   opacity: 1;
-  right: 0;
-}
+ }
 
 .fade-leave.fade-leave-active {
   opacity: 0.01;
-  right: -100%;
+  
   transition: all 800ms ease-in;
 }
-
+ 

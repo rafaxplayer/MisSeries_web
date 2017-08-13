@@ -17,13 +17,10 @@ class ListTvShows extends Component {
     }
 
     componentWillMount = () =>this.props.getTvShows();
-        
     
-   
     componentWillUnMount = () => this.props.stopRef(REF_SHOWS)
-        
-    
-    newSerie(){
+  
+    newSerie = () => {
         let num = prompt("Codigo de la serie:","code");
         console.log(num)
         if(num && num.length > 0){
@@ -36,7 +33,7 @@ class ListTvShows extends Component {
         }
     }
 
-    notSeenCount(code){
+    notSeenCount = code =>{
         let count =0;
         Object.keys(this.props.notseen).forEach((key,i,array)=>{
             let episode = this.props.notseen[key]
@@ -48,7 +45,7 @@ class ListTvShows extends Component {
         return count;
     }
 
-    render(){
+    render = () => {
            
         return (
             <section className="list">

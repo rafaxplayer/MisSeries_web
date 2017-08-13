@@ -11,7 +11,7 @@ import NotFound from './components/NotFound'
 
 render(
   <Provider store={ store }>
-    <Router>
+    <Router basename="/mis-series">
         <App>
           <Switch>
             <Route exact path="/" component={ListTvShows}/>

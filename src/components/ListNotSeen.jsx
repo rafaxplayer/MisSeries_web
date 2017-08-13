@@ -7,7 +7,7 @@ import connectWithTransitionGroup from 'connect-with-transition-group';// Necesa
 
 class ListNotSeen extends Component {
 
-    render() {
+    render = () => {
               
         return (
                <section className="list">
@@ -26,5 +26,5 @@ class ListNotSeen extends Component {
         );
     }
 }
-const mapStateToProps=(state) =>({notseen:state.episodes.notseen});
+const mapStateToProps = (state) =>({notseen:state.episodes.notseen});
 export default connectWithTransitionGroup(connect(mapStateToProps)(ListNotSeen));

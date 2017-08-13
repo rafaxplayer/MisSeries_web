@@ -24,7 +24,7 @@ class ItemShow extends Component {
     }
 
         
-    render() {
+    render = () => {
         const { show, notseen } = this.props
         return (
             <article className="item item-show">

@@ -1,17 +1,19 @@
 .item-episode{
     padding: 10px;
-}
-.item-episode>*{
-    display: inline-block
+    display: flex;
+    align-items: center;
+    
 }
 
 .switch,.item-episode i{
-    vertical-align: middle;
-    float: right;
-    margin: 15px;
     cursor: pointer;
 }
 
-.item-episode i{
-    margin: 10px;
+.item-episode .switch{
+    margin-right: 10px;
 }
+.item-episode i{
+   margin-left: auto;
+   margin-right: 15px;
+}
+

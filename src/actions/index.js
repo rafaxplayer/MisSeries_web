@@ -62,8 +62,7 @@ export function logout(){
 export function getNotSeen(){
     return function(dispatch,getState){
         episodesRef.orderByChild('visto').equalTo(false).on('value', function(snapshot){
-            
-            if(snapshot.val() != null){
+         if(snapshot.val() != null){
                 snapshot.forEach(snap => {
                      if(!snap.val().notify){
                         notificationShow("Nuevo Capitulo :\r\n" + snap.val().name);
@@ -110,9 +109,9 @@ export function deleteShow(id){
 export function newShow(code){
     return function(dispatch,getState){
         fetch(cns.BASE_URL_SERIE + code)
-        .then((res)=>{
+        .then((res) => {
             return res.text();
-        }).then((html)=> {
+        }).then((html) => {
 
             const $ = cheerio.load(html);
            

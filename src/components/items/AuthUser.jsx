@@ -12,7 +12,7 @@ class AuthUser extends Component {
 
     renderButton=() => (<div className="profile"><ul ><li><button onClick={this.handleAuth.bind(this)}>Login</button></li></ul></div>)
     
-    render=() =>{
+    render = () =>{
         const { user } = this.props
         return (<div className="profile">
                 {user ? (
